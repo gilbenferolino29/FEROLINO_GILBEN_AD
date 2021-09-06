@@ -1,9 +1,7 @@
-var product = '';
-
 function multiply(a, b) { a * b };
 
 for (var ctr = 1; ctr <= 10; ctr++) {
-    product = '';
+    var product = '';
     for (var ctr2 = 1; ctr2 <= 10; ctr2++) {
         //No \t indent
         // if (ctr * ctr2 < 10) {
