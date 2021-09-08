@@ -1,4 +1,4 @@
-function multiply(a, b) { a * b };
+//function multiply(a, b) { a * b };
 
 for (var ctr = 1; ctr <= 10; ctr++) {
     var product = '';
