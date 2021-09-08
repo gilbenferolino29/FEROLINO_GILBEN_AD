@@ -1,4 +1,4 @@
-var number = 6;
+var number = 0;
 var prime = true;
 
 //BEFORE ENTERING THE LOOP, CHECK NUMBER AS 1 IS NOT A PRIME NUMBER
@@ -10,7 +10,6 @@ for (var ctr = 2; ctr < number; ctr++) {
         prime = false;
     }
 }
-console.log(typeof prime);
 if (number <= 0) {
     console.log(`I can't seem to check that number as ${number} is not a valid number in checking Prime Numbers.\nPlease do try again :)`);
 } else
