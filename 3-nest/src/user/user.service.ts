@@ -4,6 +4,7 @@ import {
   Injectable,
   NotAcceptableException,
   ConsoleLogger,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { concat } from 'rxjs';
 
@@ -29,10 +30,13 @@ export class UserService {
 
   //Search for user
   search(term: string) {
+    var searchData = [];
     for (const user of this.users.values()) {
-      if (user.search(term)) return user.toJson();
+      if (user.search(term)) searchData.push(user.toJson());
     }
-    throw new NotFoundException('User not found. Please try again.');
+    if(searchData.length == 0)
+      throw new NotFoundException('User not found. Please try again.');
+    return searchData;
   }
 
   //Deletes User
@@ -49,6 +53,8 @@ export class UserService {
   changeUser(id: string, name: string, age: number, email: string) {
         let userTemp = [];
         let userChanged = [];
+        if (!this.users.has(id))
+          throw new NotFoundException('User not found. Please try again.');
     for (const [key, user] of this.users.entries()) {
         if (key === id) {
             userTemp.push(user.toJson());
@@ -88,7 +94,7 @@ export class UserService {
         if (age) {
           user.setAge(age);
         }
-        if (email ) {
+        if (email) {
             if (this.emailCheck(email))
                 throw new NotAcceptableException("Email is already taken. Please try again.");
             else
@@ -102,7 +108,7 @@ export class UserService {
       }
       
     }
-    throw new NotAcceptableException("User update unsuccessful. May be because of invalid input. Please try again.");
+    throw new InternalServerErrorException("User update unsuccessful. May be because of invalid input. Please try again.");
   }
 
   //Logging in
