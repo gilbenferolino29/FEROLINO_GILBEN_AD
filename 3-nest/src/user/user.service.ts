@@ -51,17 +51,17 @@ export class UserService {
   }
  //Update all values of a certain user given the ID
   changeUser(id: string, name: string, age: number, email: string) {
-        let userTemp = [];
-        let userChanged = [];
+    if(!name || !age || !email)
+      throw new InternalServerErrorException('There was a lacking input. All data value must be changed. Please try again');
+
         if (!this.users.has(id))
-          throw new NotFoundException('User not found. Please try again.');
+          throw new InternalServerErrorException('User not found. Please try again.');
     for (const [key, user] of this.users.entries()) {
         if (key === id) {
-            userTemp.push(user.toJson());
           if (name) {
             user.setName(name);
           }
-          if (age) {
+          if (!age) {
             user.setAge(age);
           }
           if (email) {
@@ -70,10 +70,9 @@ export class UserService {
             else
                 user.setEmail(email)
           }
-          userChanged.push(user.toJson())
-          if (userTemp != userChanged)   
+        
             return {"User updated successfully": true};
-        throw new NotAcceptableException("There was a lacking input. All data value must be changed. Please try again.");
+        //throw new NotAcceptableException("There was a lacking input. All data value must be changed. Please try again.");
         }
       } 
   }
@@ -86,6 +85,7 @@ export class UserService {
     email: string,
     password: string,
   ) {
+
     for (const [key, user] of this.users.entries()) {
       if (key === id) {
         if (name) {
@@ -108,7 +108,7 @@ export class UserService {
       }
       
     }
-    throw new InternalServerErrorException("User update unsuccessful. May be because of invalid input. Please try again.");
+    throw new InternalServerErrorException("User update unsuccessful. May be because of invalid input/User Not Found. Please try again.");
   }
 
   //Logging in
