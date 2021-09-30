@@ -15,19 +15,8 @@ export class UserController {
   constructor(private readonly userSerivce: UserService) {}
 
   @Post('/register')
-  addUser(
-    @Body('name') userName: string,
-    @Body('age') userAge: number,
-    @Body('email') userEmail: string,
-    @Body('password') userPass: string,
-  ) {
-    const generatedUser = this.userSerivce.addUser(
-      userName,
-      userAge,
-      userEmail,
-      userPass,
-    );
-    return { user: generatedUser };
+  addUser(@Body() body: any) {
+    return this.userSerivce.register(body);
   }
 
   @Get('/all')
@@ -37,30 +26,18 @@ export class UserController {
 
   @Get(':id')
   getUser(@Param('id') id: string) {
-    const userData = this.userSerivce.getUser(id);
-    return { user: userData };
+    return this.userSerivce.getUser(id);
   }
 
   @Patch('/:id')
-  updateUser(
-    @Param('id') id: string,
-    @Body('name') userName: string,
-    @Body('age') userAge: number,
-    @Body('email') userEmail: string,
-    @Body('password') userPass: string,
-  ) {
-    return this.userSerivce.updateUser(id, userName, userAge, userEmail, userPass);
+  updateUser(@Param('id') id: string, @Body () body:any) {
+    return this.userSerivce.updateUser(id,body);
     
   }
 
   @Put('/:id')
-  changeUser(
-    @Param('id') id: string,
-    @Body('name') userName: string,
-    @Body('age') userAge: number,
-    @Body('email') userEmail: string,
-  ) {
-      return this.userSerivce.changeUser(id, userName, userAge, userEmail);
+  changeUser(@Param('id') id: string, @Body() body:any) {
+      return this.userSerivce.changeUser(id, body);
   }
 
   @Delete('/:id')
@@ -69,11 +46,8 @@ export class UserController {
   }
 
   @Post('/login')
-  userLogin(
-    @Body('email') userEmail: string,
-    @Body('password') userPass: string,
-  ) {
-    return this.userSerivce.login(userEmail, userPass);
+  userLogin(@Body() body:any) {
+    return this.userSerivce.login(body);
   }
   @Get('/search/:term')
   search(@Param('term') term: string) {
