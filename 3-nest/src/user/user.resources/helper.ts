@@ -1,5 +1,7 @@
 import { User } from './user.model';
 import { v4 as uid } from 'uuid';
+import { CRUDReturn } from './crud_return.interface';
+import * as admin from 'firebase-admin';
 export class Helper {
   //returns an array of attributes as defined in the class
   static describeClass(typeOfClass: any): Array<any> {
@@ -19,8 +21,24 @@ export class Helper {
     }
     return arr;
   }
-  static populate(): Map<string, User> {
-    var result: Map<string, User> = new Map<string, User>();
+
+  static async checkEmpty(): Promise<boolean>{
+    var DB = admin.firestore();
+    var snapshots = await DB.collection('users').where('name', '==', "Nathan Plains").get();
+    if(snapshots.size > 0) {
+      return false;
+    }
+    else return true;
+}
+
+
+  
+
+  static async populate(): Promise<CRUDReturn> {
+    var DB = admin.firestore();
+    var result = await DB.collection('users');
+    
+    if(await this.checkEmpty()) {
     try {
       var users = [
         new User('Leanne Graham', 18, 'sincere@april.biz', 'LG_123456'),
@@ -29,14 +47,15 @@ export class Helper {
         new User('Patricia Lebsack', 18, 'patty@kory.org', 'PL_12345'),
       ];
       users.forEach((user) => {
-        result.set(user.getId(), user);
+        result.doc(user.getId()).set(user.toJsonPass());
       });
-      return result;
+      return {success:true, data:result};
     } catch (error) {
       console.log(error);
       return null;
     }
-  }
+  }else return {success:true, data:result};
+}
 
   static validBody(body: any): { valid: boolean; data: string } {
     try {
@@ -88,30 +107,5 @@ export class Helper {
       return { valid: false, data: error.message };
     }
   }
-
-  static validBodyPatch(body: any): { valid: boolean; data: string } {
-    try {
-      var bodyValidation: { valid: boolean; data: string } =
-        this.validBody(body);
-      if (bodyValidation.valid) {
-        var keys: Array<string> = Helper.describeClass(User);
-        keys = Helper.removeItemOnce(keys, "id");
-        keys = Helper.removeItemOnce(keys, 'password');
-        for (const key of Object.keys(body)) {
-          if (keys.includes(`${key}`)) {
-            keys = Helper.removeItemOnce(keys, key);
-          }
-        }
-        if (keys.length > 0) {
-          
-          throw Error(`Payload is missing ${keys}`);
-        }
-        return { valid: true, data: null };
-      } else throw Error(bodyValidation.data);
-    } catch (error) {
-      return { valid: false, data: error.message };
-    }
-  }
-
 
 }

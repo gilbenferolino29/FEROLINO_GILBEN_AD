@@ -24,7 +24,7 @@ export class UserController {
     return this.userSerivce.getAll();
   }
 
-  @Get(':id')
+  @Get('/:id')
   getUser(@Param('id') id: string) {
     return this.userSerivce.getUser(id);
   }
@@ -37,7 +37,7 @@ export class UserController {
 
   @Put('/:id')
   changeUser(@Param('id') id: string, @Body() body:any) {
-      return this.userSerivce.changeUser(id, body);
+      return this.userSerivce.replaceValuesUser(id, body);
   }
 
   @Delete('/:id')
