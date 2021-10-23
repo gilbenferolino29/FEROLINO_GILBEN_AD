@@ -1,0 +1,63 @@
+<!-- <div class="mainContent">
+  <nav>Nav</nav>
+  <main>Main</main>
+  <div id = "container">
+    <div id="tableContent">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div> -->
+
+<!-- NAV-BAR -->
+<mat-toolbar color="primary">
+  <span>User Management System</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+<!-- TABLE -->
+<div class="mainContent">
+  <div id="container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef>Age</th>
+        <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>

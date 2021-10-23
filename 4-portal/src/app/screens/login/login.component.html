@@ -1,0 +1,31 @@
+<div class="mainContent">
+    <div class="login">
+        <form class="example-form" [formGroup]="loginForm" (submit)='signIn()'>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName = "email" placeholder="Ex. pat@example.com">
+              <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName = "password" >
+                <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                  Password is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <div class = "buttons">
+                <button mat-raised-button color="primary" type = "submit" [disabled] = "!loginForm.valid">LOGIN</button>
+                <button mat-raised-button color="primary" (click) = "register()">REGISTER</button>
+            </div>
+          </form>
+        
+        
+    </div>
+</div>
