@@ -42,8 +42,15 @@ export class RegisterComponent implements OnInit {
     this.userRegister.email = this.registerForm.controls.email.value;
     this.userRegister.password = this.registerForm.controls.password.value;
 
-    this.registerService.registerUser(this.userRegister).subscribe(next=>{
+    this.registerService.registerUser(this.userRegister).subscribe((next:any)=>{
       console.log(next);
+      if(next.success){
+        this.router.navigateByUrl('home');
+        alert("Account registration successful!");
+      }
+      else
+        alert("Account registration unsuccessful!");
+        
     }, error =>{
       console.log(error);
     })
@@ -52,4 +59,5 @@ export class RegisterComponent implements OnInit {
   login(){
     this.router.navigateByUrl('');
   }
+
 }
