@@ -33,4 +33,8 @@ export class HomeComponent implements OnInit {
       console.log(error);
     })
   }
+
+  login(){
+    this.router.navigateByUrl('');
+  }
 }

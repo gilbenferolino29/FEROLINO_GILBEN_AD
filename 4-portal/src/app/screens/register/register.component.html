@@ -1,24 +1,24 @@
 <div class="mainContent">
     <div class="register">
         <form class="example-form" [formGroup]="registerForm" (submit)='register()'>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Name</mat-label>
+            <mat-form-field class="Form" appearance="fill">
+              <mat-label>Name*</mat-label>
               <input type="text" matInput formControlName = "name" placeholder="Ex. Gilben Ferolino">
               <mat-error *ngIf="registerForm.controls.name.hasError('required')">
                 Name is <strong>required</strong>
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Age</mat-label>
-                <input type="number" min="0" matInput formControlName = "age" placeholder="Ex. 20">
-                <mat-error *ngIf="registerForm.controls.age.hasError('required')">
-                  Age is <strong>required</strong>
+            <mat-form-field class="Form" appearance="fill">
+                <mat-label>Age*</mat-label>
+                <input type="number" min="1" matInput formControlName = "age" placeholder="Ex. 20">
+                <mat-error *ngIf="registerForm.controls.age.hasError('min')">
+                  Age must be <strong>greater than or equal to 1</strong>
                 </mat-error>
               </mat-form-field>
 
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Email</mat-label>
+              <mat-form-field class="Form" appearance="fill">
+                <mat-label>Email*</mat-label>
                 <input type="email" matInput formControlName = "email" placeholder="Ex. pat@example.com">
                 <mat-error *ngIf="registerForm.controls.email.hasError('email') && !registerForm.controls.email.hasError('required')">
                   Please enter a valid email address
@@ -28,12 +28,24 @@
                 </mat-error>
               </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Password</mat-label>
+            <mat-form-field class="Form" appearance="fill">
+                <mat-label>Password*</mat-label>
                 <input type="password" matInput formControlName = "password" >
                 <mat-error *ngIf="registerForm.controls.password.hasError('required')">
                   Password is <strong>required</strong>
                 </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="Form" appearance="fill">
+                <mat-label>Confirm Password*</mat-label>
+                <input type="password" matInput formControlName = "confirm" >
+                <mat-error *ngIf="registerForm.controls.password.hasError('required'); else confirm">
+                  Password is <strong>required</strong>
+                </mat-error>
+                <ng-template #confirm> <mat-error *ngIf="registerForm.controls.confirm.value !== registerForm.controls.password.value">
+                  Password doesn't <strong>match</strong>
+                </mat-error></ng-template>
+               
               </mat-form-field>
 
               <div class = "buttons">

@@ -4,11 +4,14 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 70vh;
+    height: 90vh;
     
 
 }
 
+.spacer{
+    flex: 1 1 auto;
+}
 nav{
     height: 1fr;
     background:wheat;
@@ -19,8 +22,8 @@ main{
     
 }
 #container{
-     width: 75%;
-     height: 75%;
+     width: 1200px;
+     height: 600px;
     // display: flex;
     // align-items: center;
     // justify-content: center;

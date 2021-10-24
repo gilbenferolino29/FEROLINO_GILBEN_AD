@@ -35,11 +35,11 @@
 
 
 .buttons{
+    margin-top: 20px;
     text-align: center;
 }
 
 button {
-    
     display: inline-block;
     background-color: #1fc7bf;
     //font-family: 'Roboto Condensed', sans-serif;
@@ -58,7 +58,7 @@ button:hover {
     background-color: #2EE59D;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
-    transform: translateY(-7px);
+    transform: translateY(-3px);
 }
 
 // ::ng-deep .mat-form-field-empty.mat-form-field-label, .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   })
-
+  error = ''
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
@@ -30,13 +30,17 @@ export class LoginComponent implements OnInit {
     this.userLogin.password = this.loginForm.controls.password.value;
     console.log(`${this.userLogin.email}${this.userLogin.password}`)
 
-     this.loginService.signInUser(this.userLogin).subscribe((next) =>{
+     this.loginService.signInUser(this.userLogin).subscribe((next:any) =>{
       console.log(next)
+      if(next.success == true)
       this.router.navigateByUrl('/home');
+      else
+      alert("Email/Password does not match!")
     }, (error) => {
       console.log(error)
     })
 
+    //TESTING PURPOSES FOR ASYNC/AWAIT
     console.log("here4")
   }
   register(){

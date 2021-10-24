@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from './register.service';
 import { UserRegister } from 'src/app/models/register';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,10 +14,11 @@ export class RegisterComponent implements OnInit {
 
 
   registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    age: new FormControl(0, [Validators.required]),
+    name: new FormControl('', Validators.required),
+    age: new FormControl(0, Validators.min(1)),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
+    confirm: new FormControl('', Validators.required)
   })
 
 
@@ -30,6 +32,11 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
+    if(this.registerForm.controls.password.value !==
+      this.registerForm.controls.confirm.value){
+        this.registerForm.controls.confirm.hasError('required');
+      }
+
     this.userRegister.name = this.registerForm.controls.name.value;
     this.userRegister.age = this.registerForm.controls.age.value;
     this.userRegister.email = this.registerForm.controls.email.value;
