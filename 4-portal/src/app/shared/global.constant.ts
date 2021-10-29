@@ -14,8 +14,8 @@ export class GlobalConstants {
   public static get_all_user = "user/all";
   // Register Path
   public static register_user = "user/register";
-  // Delete User
+  // Delete User ... Edit User ... Get User
   public static delete_user = "user/"
-  // Edit User
   public static patch_user = "user/"
+  public static get_user = "user/"
 }

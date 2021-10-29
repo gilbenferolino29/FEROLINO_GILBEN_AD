@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserBody } from 'src/app/models/user';
+import { UserRegister } from 'src/app/models/register';
+
 @Component({
   selector: 'app-action-dialog-box',
   templateUrl: './action-dialog-box.component.html',
@@ -12,15 +13,16 @@ export class ActionDialogBoxComponent implements OnInit {
   local_data:any;
 
   constructor(public dialogRef: MatDialogRef<ActionDialogBoxComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: UserBody){
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: UserRegister){
       console.log(data);
       this.local_data = {...data};
       this.action = this.local_data.action;
   }
    
+  
+
   doAction(){
     this.dialogRef.close({event:this.action, data:this.local_data});
-
   }
 
   closeDialog(){
@@ -28,6 +30,7 @@ export class ActionDialogBoxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HomeService } from './home.service';
 import { UserBody } from 'src/app/models/user';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { ActionDialogBoxComponent } from './action-dialog-box/action-dialog-box.component';
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   dataSource = new MatTableDataSource<UserBody>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
   
   constructor(private dialog: MatDialog, private homeService: HomeService, private router:Router) { }
 
@@ -35,6 +36,10 @@ export class HomeComponent implements OnInit {
       if(result.event == 'Delete'){
         this.deleteUser(result.data)
       }
+      if(result.event == 'Edit'){
+
+      }
+      this.ngOnInit();
     })
   }
 

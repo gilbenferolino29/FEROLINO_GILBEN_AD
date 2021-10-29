@@ -35,4 +35,5 @@ export class HttpService {
   public patch(url: string, model: any){
     return this.http.patch(url, model)
   }
+  
 }

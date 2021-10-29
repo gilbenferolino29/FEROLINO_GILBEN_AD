@@ -16,6 +16,13 @@ export class HomeService {
     );
   }
 
+  //Get User
+  public getUser(id:string){
+    return this.httpService.get(
+      GlobalConstants.server_url + GlobalConstants.get_user + id
+    )
+  }
+
   //Delete User
   public deleteUser(id:string){
     return this.httpService.delete(

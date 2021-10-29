@@ -113,7 +113,7 @@ export class UserService {
           );
         }
       });
-      console.log(results);
+      //console.log(results);
       return results;
     } catch (error) {
       return null;
