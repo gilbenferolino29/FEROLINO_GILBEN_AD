@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { RegisterService } from './register.service';
 import { UserRegister } from 'src/app/models/register';
 import { Router } from '@angular/router';
+import { passwordMatchingValidator } from 'src/app/shared/password-matching.directive';
+
+
 
 @Component({
   selector: 'app-register',
@@ -12,23 +15,28 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   userRegister = {} as UserRegister;
 
+  passwordCheck:ValidatorFn = (control:AbstractControl) : ValidationErrors | null =>{
+    var pass = control.get('password');
+    var conPass = control.root.get('confirm');
+    return pass && conPass && pass.value !== conPass.value ? {mismatch:true} : null;
+  }
 
   registerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     age: new FormControl(0, Validators.min(1)),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
-    confirm: new FormControl('', Validators.required)
-  })
+    password: new FormControl('', Validators.required, ),
+    confirm: new FormControl('', [Validators.required,passwordMatchingValidator()] )
+  }, 
+  
+  );
 
+  
 
   constructor(private registerService: RegisterService, private router: Router) { }
 
   ngOnInit(): void {
     console.log("Register Component Loaded!")
-    
-
-
   }
 
   register(){
@@ -55,6 +63,8 @@ export class RegisterComponent implements OnInit {
       console.log(error);
     })
   }
+
+ 
 
   login(){
     this.router.navigateByUrl('');

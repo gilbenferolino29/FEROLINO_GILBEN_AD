@@ -20,6 +20,9 @@
 <!-- NAV-BAR -->
 <mat-toolbar color="primary">
   <span>User Management System</span>
+  <span class = "portal-span">Home</span>
+  <span class = "portal-span">Login</span>
+  <span class = "portal-span">Register</span>
   <span class="spacer"></span>
   <button mat-icon-button (click) = "login()"><mat-icon>exit_to_app</mat-icon></button>
 </mat-toolbar>
@@ -55,10 +58,20 @@
         <td mat-cell *matCellDef="let element">{{ element.email }}</td>
       </ng-container>
 
+      <!-- Action Column -->
+      <ng-container matColumnDef = "action">
+        <th mat-header-cell *matHeaderCellDef>Edit / Delete</th>
+        <td mat-cell *matCellDef="let element" class = "action-link">
+          <div class = "buttons">
+          <button  mat-icon-button (click) = "openDialog('Update', element)" class="button-edit"><mat-icon>edit</mat-icon></button>
+          <button  mat-icon-button (click) = "openDialog('Delete', element)" class="button-delete"><mat-icon>delete</mat-icon></button>
+          </div>
+        </td>
+      </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+    <mat-paginator [length]="200" [pageSizeOptions]="[5, 10, 50]" aria-label="Select page">
     </mat-paginator>
   </div>
 </div>

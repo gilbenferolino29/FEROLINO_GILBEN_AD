@@ -30,26 +30,31 @@
 
             <mat-form-field class="Form" appearance="fill">
                 <mat-label>Password*</mat-label>
-                <input type="password" matInput formControlName = "password" >
+                <input type="password" matInput formControlName = "password"  >
                 <mat-error *ngIf="registerForm.controls.password.hasError('required')">
                   Password is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
 
               <mat-form-field class="Form" appearance="fill">
-                <mat-label>Confirm Password*</mat-label>
+                <mat-label>Confirm Password</mat-label>
                 <input type="password" matInput formControlName = "confirm" >
-                <mat-error *ngIf="registerForm.controls.password.hasError('required'); else confirm">
+                <mat-error *ngIf="registerForm.controls.confirm.hasError('required')">
                   Password is <strong>required</strong>
                 </mat-error>
-                <ng-template #confirm> <mat-error *ngIf="registerForm.controls.confirm.value !== registerForm.controls.password.value">
+                <mat-error *ngIf="registerForm.controls.confirm.hasError('passwordNotMatch')">
                   Password doesn't <strong>match</strong>
-                </mat-error></ng-template>
-               
+                </mat-error>
+                
+                
+                <!-- <ng-template #confirmPass> <mat-error *ngIf="registerForm.controls.confirm.value !== registerForm.controls.password.value && (registerForm.touched || registerForm.dirty)">
+                  Password doesn't <strong>match</strong>
+                </mat-error></ng-template> -->
+
               </mat-form-field>
 
               <div class = "buttons">
-                <button mat-raised-button color="primary"  type = "submit" [disabled] = "!registerForm.valid">Register</button>
+                <button mat-raised-button color="primary"  type = "submit" [disabled] = "registerForm.controls.confirm.hasError('passwordNotMatch')">Register</button>
                 <button mat-raised-button color="primary" (click) = "login()">Back to Login</button>
             </div>
           </form>

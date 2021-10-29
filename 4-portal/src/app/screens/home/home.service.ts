@@ -15,4 +15,18 @@ export class HomeService {
       GlobalConstants.server_url + GlobalConstants.get_all_user
     );
   }
+
+  //Delete User
+  public deleteUser(id:string){
+    return this.httpService.delete(
+      GlobalConstants.server_url + GlobalConstants.delete_user + id
+      );
+  }
+
+  //Update User
+  public patchUser(id:string, userBody:any){
+    return this.httpService.patch(
+      GlobalConstants.server_url + GlobalConstants.patch_user + id, userBody
+      );
+  }
 }

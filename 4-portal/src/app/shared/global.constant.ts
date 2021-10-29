@@ -10,6 +10,12 @@ export class GlobalConstants {
 
   // Login Path 
   public static sign_in_user = "user/login";
+  // Get All Users Path
   public static get_all_user = "user/all";
+  // Register Path
   public static register_user = "user/register";
+  // Delete User
+  public static delete_user = "user/"
+  // Edit User
+  public static patch_user = "user/"
 }

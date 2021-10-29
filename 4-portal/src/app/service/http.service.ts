@@ -27,9 +27,12 @@ export class HttpService {
     return this.http.post(url, model, this.getHeaders());
   }
   
-  // HTTP PUT
-
   // HTTP DELETE
-
+  public delete(url: string){
+    return this.http.delete(url);
+  }
   // HTTP PATCH
+  public patch(url: string, model: any){
+    return this.http.patch(url, model)
+  }
 }
