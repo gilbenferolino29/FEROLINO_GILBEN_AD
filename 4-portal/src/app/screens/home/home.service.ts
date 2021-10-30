@@ -30,6 +30,13 @@ export class HomeService {
       );
   }
 
+  //Edit User
+  public editUser(id:String, userBody:any) {
+    return this.httpService.patch(
+      GlobalConstants.server_url + GlobalConstants.patch_user + id, userBody
+      );
+  }
+
   //Update User
   public patchUser(id:string, userBody:any){
     return this.httpService.patch(

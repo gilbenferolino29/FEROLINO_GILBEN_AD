@@ -33,11 +33,12 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(ActionDialogBoxComponent,{width: '300px', data:obj});
 
     dialogRef.afterClosed().subscribe(result =>{
+      console.log(result);
       if(result.event == 'Delete'){
         this.deleteUser(result.data)
       }
       if(result.event == 'Edit'){
-
+        this.editUser(result.data, result.data)
       }
       this.ngOnInit();
     })
@@ -57,16 +58,21 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  login(){
-    this.router.navigateByUrl('');
+  nav(url:string) {
+    this.router.navigateByUrl(url);
   }
 
-
+  editUser(row_obj:any, userBody:any){
+    this.homeService.editUser(row_obj.id, userBody).subscribe((next:any)=>{
+      console.log(next)
+      this.dataSource.data = next.data;
+    })
+  }
 
   deleteUser(row_obj:any){
     this.homeService.deleteUser(row_obj.id).subscribe((next:any)=>{
       console.log(next);
-      console.log(next.data['id'])
+      this.dataSource.data = next.data;
       
       });
   }

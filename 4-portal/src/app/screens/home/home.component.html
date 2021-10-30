@@ -20,11 +20,15 @@
 <!-- NAV-BAR -->
 <mat-toolbar color="primary">
   <span>User Management System</span>
-  <span class = "portal-span">Home</span>
-  <span class = "portal-span">Login</span>
-  <span class = "portal-span">Register</span>
+  <span class = "portal-span">  
+    <h5>Home</h5>
+  </span>
+  <span class = "portal-span">  
+    <h5 (click)="nav('register')">Register</h5>
+  </span>
+
   <span class="spacer"></span>
-  <button mat-icon-button (click) = "login()"><mat-icon>exit_to_app</mat-icon></button>
+  <button mat-icon-button (click) = "nav('')"><mat-icon>exit_to_app</mat-icon></button>
 </mat-toolbar>
 
 <!-- TABLE -->

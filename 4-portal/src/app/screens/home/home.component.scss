@@ -14,8 +14,14 @@
 }
 
 .portal-span{
-    font-size: 15px;
     padding-left: 30px;
+    h5{
+        font-size: 15px;
+        cursor: pointer;
+    }
+    h5:hover{
+        color:#2EE59D;
+    }
 }
 nav{
     height: 1fr;
@@ -92,12 +98,12 @@ table{
     height: 80%;
     .mat-column-id{
         width: 20%;
-        border-right: 1px solid currentColor;
+        
         //padding-right: 5px;
     }
     .mat-column-name{
         padding-left: 16px;
-        width: 200px;
+        width: 125px;
     }
     .mat-column-age{
         width:20px;

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
      this.loginService.signInUser(this.userLogin).subscribe((next:any) =>{
       console.log(next)
       if(next.success == true)
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('home');
       else
       alert("Email/Password does not match!")
     }, (error) => {
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     console.log("here4")
   }
   register(){
-    this.router.navigateByUrl('/register');
+    this.router.navigateByUrl('register');
   }
 
 
