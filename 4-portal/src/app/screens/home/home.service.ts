@@ -43,4 +43,12 @@ export class HomeService {
       GlobalConstants.server_url + GlobalConstants.patch_user + id, userBody
       );
   }
+
+  //Search User
+  public searchUser(term: string){
+    return this.httpService.get(
+      GlobalConstants.server_url + GlobalConstants.search_user + term
+    )
+  }
+
 }

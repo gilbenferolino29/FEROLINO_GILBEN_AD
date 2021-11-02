@@ -65,9 +65,7 @@ export class RegisterComponent implements OnInit {
   }
 
  
-
-  login(){
-    this.router.navigateByUrl('');
+  nav(url:string){
+    this.router.navigateByUrl(url);
   }
-
 }

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './screens/login/login.component';
 import { HomeComponent } from './screens/home/home.component';
 import { RegisterComponent } from './screens/register/register.component';
+import { ActionDialogBoxComponent } from './screens/home/action-dialog-box/action-dialog-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Materials UI - Angular
@@ -19,7 +20,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ActionDialogBoxComponent } from './screens/home/action-dialog-box/action-dialog-box.component';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { ActionDialogBoxComponent } from './screens/home/action-dialog-box/actio
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

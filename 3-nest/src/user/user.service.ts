@@ -90,6 +90,7 @@ export class UserService {
   //Get all data of the map "users" ?? READ
   async getAll(): Promise <CRUDReturn> {
     try {
+      Helper.populate();
       var userObjects = await this.getAllUserObjects();
       var populatedData: Array<any> = [];
       for (const user of userObjects.values()) {
@@ -191,6 +192,9 @@ export class UserService {
                           return {success: true, data: update.data}
                         }
                   }else throw new NotAcceptableException(
+                    //check first if this user email is the same emaildata in db
+                    //if not throrw error below
+                    
                       `${body.email} is already in use by another user. Please try again.`,
                     );
           }else throw new InternalServerErrorException(validBody.data);
@@ -204,6 +208,7 @@ export class UserService {
       };
     }
   }
+
   //Update certain values of a certain user given the ID
   async updateUser(id: string, body: any): Promise <CRUDReturn> {
     try {
@@ -215,7 +220,8 @@ export class UserService {
           var data = dataOutput.data();
           if (validBody.valid) {
             var exists = await this.emailCheck(body.email);
-                  if (!exists){
+                  if ((exists && data.id === id) ||!exists){
+                    console.log(data.id);
                         var rUser = new User (data.name, data.age, data.email, data.password, id)
                         console.log(rUser.toJsonPass());
                         var success = rUser.replaceValues(body);

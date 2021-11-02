@@ -20,7 +20,7 @@ html {
 
 body {
     background-color: grey;
-    font-family: 'Roboto Condensed', sans-serif;
+    // font-family: 'Roboto Condensed', sans-serif;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #681bb1, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
@@ -52,4 +52,20 @@ button:hover {
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
     transform: translateY(-3px);
+}
+
+.portal-span{
+    cursor:pointer;
+}
+.portal-span:hover{
+    color:#2EE59D;
+}
+
+.footer{
+    color: white;
+    background-color: transparent;
+    span{
+        letter-spacing: 2px;
+        margin:auto;
+    }
 }

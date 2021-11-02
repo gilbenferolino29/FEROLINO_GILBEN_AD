@@ -18,4 +18,5 @@ export class GlobalConstants {
   public static delete_user = "user/"
   public static patch_user = "user/"
   public static get_user = "user/"
+  public static search_user = "user/search/"
 }

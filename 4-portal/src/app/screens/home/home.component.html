@@ -1,28 +1,9 @@
-<!-- <div class="mainContent">
-  <nav>Nav</nav>
-  <main>Main</main>
-  <div id = "container">
-    <div id="tableContent">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
-</div> -->
+
 
 <!-- NAV-BAR -->
 <mat-toolbar color="primary">
-  <span>User Management System</span>
-  <span class = "portal-span">  
-    <h5>Home</h5>
-  </span>
+  <span class = "portal-span">User Management System</span>
+  
   <span class = "portal-span">  
     <h5 (click)="nav('register')">Register</h5>
   </span>
@@ -33,32 +14,38 @@
 
 <!-- TABLE -->
 <div class="mainContent">
+  
   <div id="container">
-    <table mat-table [dataSource]="dataSource" #mytable class="mat-elevation-z8">
+    <mat-form-field>
+      <input matInput type="text" (keyup)="search($event)" placeholder="Search">
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort matSortStart="desc" #mytable class="mat-elevation-z8" >
       <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
-
+          <div *ngIf="dataSource.data.length === 0">
+            No Records Found!
+          </div>
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{ i+1}}</td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
       <!-- Age Column -->
       <ng-container matColumnDef="age">
-        <th mat-header-cell *matHeaderCellDef>Age</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
         <td mat-cell *matCellDef="let element">{{ element.age }}</td>
       </ng-container>
 
       <!-- Email Column -->
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
         <td mat-cell *matCellDef="let element">{{ element.email }}</td>
       </ng-container>
 
@@ -77,5 +64,10 @@
     </table>
     <mat-paginator [length]="200" [pageSizeOptions]="[5, 10, 50]" aria-label="Select page">
     </mat-paginator>
+    
   </div>
+  
 </div>
+<mat-toolbar class = "footer">
+  <span>USER MANAGEMENT SYSTEM - Semester 1 2021 - Gilben Ferolino</span>
+</mat-toolbar>

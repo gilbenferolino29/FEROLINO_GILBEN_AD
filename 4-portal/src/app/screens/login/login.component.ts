@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       if(next.success == true)
       this.router.navigateByUrl('home');
       else
-      alert("Email/Password does not match!")
+      alert(next.data + " Please try again!");
     }, (error) => {
       console.log(error)
     })
@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
     //TESTING PURPOSES FOR ASYNC/AWAIT
     console.log("here4")
   }
-  register(){
-    this.router.navigateByUrl('register');
+  nav(url:string){
+    this.router.navigateByUrl(url);
   }
 
 
