@@ -1,9 +1,9 @@
 <div class="mainContent">
   <mat-toolbar color="primary">
-    <span class="portal-span" (click) = "nav('home')">User Management System</span>
+    <span class="portal-span" (click)="nav('home')">User Management System</span>
 
     <span class="spacer"></span>
-    <button class="matButton" mat-icon-button (click)="nav('register')">
+    <button mat-icon-button (click)="nav('register')">
       <mat-icon>how_to_reg</mat-icon>
     </button>
   </mat-toolbar>
@@ -13,18 +13,11 @@
       <form class="example-form" [formGroup]="loginForm" (submit)="signIn()">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Email</mat-label>
-          <input
-            type="email"
-            matInput
-            formControlName="email"
-            placeholder="Ex. pat@example.com"
-          />
-          <mat-error
-            *ngIf="
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" />
+          <mat-error *ngIf="
               loginForm.controls.email.hasError('email') &&
               !loginForm.controls.email.hasError('required')
-            "
-          >
+            ">
             Please enter a valid email address
           </mat-error>
           <mat-error *ngIf="loginForm.controls.email.hasError('required')">
@@ -41,26 +34,19 @@
         </mat-form-field>
 
         <div class="buttons">
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="!loginForm.valid"
-          >
+          <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
             LOGIN
           </button>
           <!-- <button mat-raised-button color="primary" (click) = "register()">REGISTER</button> -->
         </div>
         <div class="register-spacer">
           No account yet?
-          <strong class="register" (click)="nav('register')"
-            >Create an account</strong
-          >
+          <strong class="register" (click)="nav('register')">Create an account</strong>
         </div>
       </form>
     </div>
   </div>
-  <mat-toolbar class = "footer">
+  <mat-toolbar class="footer">
     <span>USER MANAGEMENT SYSTEM - Semester 1 2021 - Gilben Ferolino</span>
   </mat-toolbar>
 </div>

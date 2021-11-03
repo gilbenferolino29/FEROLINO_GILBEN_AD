@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit {
       this.dataSource.data = next.data;
       this.dataSource.paginator = this.paginator;
       console.log(this.dataSource);
+      
     }, error => {
       console.log(error);
     })
@@ -107,12 +108,14 @@ export class HomeComponent implements OnInit {
   }
 
   deleteUser(row_obj:any){
+    
+    
     this.homeService.deleteUser(row_obj.id).subscribe((next:any)=>{
       console.log(next);
       alert(`${row_obj.id} successfully deleted`);
-      const index = this.dataSource.data.indexOf(row_obj.id);
+      const index = this.dataSource.data.findIndex(x => x.id === row_obj.id);
       console.log(index);
-      this.dataSource.data.splice(index, 1)
+      this.dataSource.data.splice(index,1)
       this.dataSource._updateChangeSubscription();
       
       });

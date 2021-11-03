@@ -11,12 +11,25 @@
 
 .Content {
     width: 100vw;
-    height: 90vh;
+    height: 85vh;
     display: grid;
     justify-content: center;
     align-content: center;
 
     
+}
+
+.portal-span{
+    padding-left: 10px;
+    padding-right: 30px;
+    h5{
+        padding-top:3px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    h5:hover{
+        color:#2EE59D;
+    }
 }
 
 .example-form {
@@ -81,8 +94,6 @@ button {
     transition: all 0.3s ease 0s;
     cursor: pointer;
     outline: none;
-    margin-right:20px;
-    
 }
 
 button:hover {
